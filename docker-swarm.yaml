@@ -1,0 +1,45 @@
+version: '3.5'
+
+services:
+
+  php:
+    image: footballtest/php-fpm:current
+    volumes:
+      - './:/var/www/api:delegated'
+      - 'composer:/root/.composer:cached'
+    networks:
+      exo_public:
+        aliases:
+          - 'php-fpm.footballtest.exo.docker'
+
+  nginx:
+    image: nginx:1.16-alpine
+    configs:
+      - source: nginx_config
+        target: /etc/nginx/conf.d/default.conf
+    volumes:
+      - './public:/var/www/api/public:ro'
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.footballtest.rule=Host(`footballtest.docker`)"
+        - "traefik.http.routers.footballtest.entrypoints=web"
+        - "traefik.http.services.footballtest.loadbalancer.server.port=80"
+    networks:
+      exo_public:
+        aliases:
+          - 'footballtest.exo.docker'
+      traefik_reverse_proxy: ~
+
+volumes:
+  composer: ~
+
+configs:
+  nginx_config:
+    file: ./docker/nginx/default.conf
+
+networks:
+  traefik_reverse_proxy:
+    external: true
+  exo_public:
+    external: true
