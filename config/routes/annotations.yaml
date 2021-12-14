@@ -1,5 +1,5 @@
-controllers:
-    resource: ../../src/Controller/
+football:
+    resource: ../../src/Football/UI/Controller/
     type: annotation
 
 kernel:

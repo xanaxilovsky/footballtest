@@ -1,0 +1,11 @@
+framework:
+  http_client:
+    default_options:
+      timeout: 30
+      max_redirects: 7
+    scoped_clients:
+      football_api:
+        base_uri: '%env(FOOTBALL_API_HOST)%'
+        headers:
+          accept: 'application/json'
+          x-apisports-key: '%env(FOOTBALL_API_KEY)%'

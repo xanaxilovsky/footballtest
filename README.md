@@ -1,1 +1,2 @@
-# footballtest
+# Test PHP Symfony - Football matches list
+

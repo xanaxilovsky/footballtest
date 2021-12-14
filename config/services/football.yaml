@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autowire: true
+
+  App\Football\Domain\FootballServiceInterface:
+      class: App\Football\Infrastructure\HttpClient\FootballApiHttpClient
+      arguments:
+          - '@football_api'

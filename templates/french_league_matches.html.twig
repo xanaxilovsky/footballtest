@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="holder d-flex align-items-center justify-content-center">
+
+    <div class="container">
+        <!-- FOR DEMO PURPOSE -->
+        <header class="text-center mb-5">
+            <h1 class="display-4 title">French league matches</h1>
+        </header>
+
+
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+
+                <!-- CHECKBOX LIST -->
+                <div class="card rounded border-0 shadow-sm position-relative">
+                    {% for fixture in fixtures %}
+                        <div class="card-header">{{ fixture.league.name }}</div>
+                        <div class="card-body table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="home {% if fixture.teams.home.winner == true %}winner{% endif %}">{{ fixture.teams.home.name }} <img src="{{ fixture.teams.home.logo }}" alt="{{ fixture.teams.home.name }}" class="img-fluid logo" /></td>
+                                        <td class="score">{{ fixture.score.fulltime.home ?? "&#8960;" }} - {{ fixture.score.fulltime.away ?? "&#8960;" }}</td>
+                                        <td class="away {% if fixture.teams.away.winner == true %}winner{% endif %}"><img src="{{ fixture.teams.away.logo }}" alt="{{ fixture.teams.away.name }}" class="img-fluid logo" /> {{ fixture.teams.away.name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
