@@ -3,6 +3,17 @@ services:
     autowire: true
 
   App\Football\Domain\FootballServiceInterface:
-      class: App\Football\Infrastructure\HttpClient\FootballApiHttpClient
-      arguments:
-          - '@football_api'
+    class: App\Football\Infrastructure\Cache\CachedFootballService
+    arguments:
+      - '@App\Football\Infrastructure\HttpClient\FootballApiHttpClient'
+      - '@cache.football'
+
+  App\Football\Infrastructure\HttpClient\FootballApiHttpClient:
+    arguments:
+      - '@football_api'
+
+  App\Football\UI\Controller\:
+    resource: '%kernel.project_dir%/src/Football/UI/Controller'
+    tags:
+      - { name: controller.service_arguments }
+      - { name: container.service_subscriber }
