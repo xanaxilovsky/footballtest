@@ -17,6 +17,26 @@
         </tr>
       </tbody>
     </table>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td class="home">
+            {% if stats.0 is defined %}
+              {%for homeStat in stats.0.statistics %}
+                <p>{{ homeStat.type }}: {{ homeStat.value }}</p>
+              {% endfor %}
+            {% endif %}
+          </td>
+          <td class="away">
+            {% if stats.1 is defined %}
+              {%for homeStat in stats.1.statistics %}
+                <p class="text-right">{{ homeStat.value }}: {{ homeStat.type }}</p>
+              {% endfor %}
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   {% endif %}
 {% endfor %}
 

@@ -11,4 +11,6 @@ interface FootballServiceInterface
     public function getFrenchTeamsList(): array;
 
     public function getHeadToHead(int $firstTeamId, int $secondTeamId): array;
+
+    public function getStatistics(int $fixtureId): array;
 }

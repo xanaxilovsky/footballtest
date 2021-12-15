@@ -23,7 +23,7 @@
               <div class="card-body table-responsive">
                 <table class="table table-hover">
                   <tbody>
-                    <tr class="clickable-row" data-bs-toggle="modal" data-bs-target="#summaryStatsModal" data-bs-home-team-id="{{ fixture.teams.home.id }}" data-bs-away-team-id="{{ fixture.teams.away.id }}" data-bs-date={{ date }}>
+                    <tr class="clickable-row" data-bs-toggle="modal" data-bs-target="#summaryStatsModal" data-bs-home-team-id="{{ fixture.teams.home.id }}" data-bs-away-team-id="{{ fixture.teams.away.id }}" data-bs-date={{ date }} data-bs-fixture-id={{ fixture.fixture.id }}>
                       <td class="home {% if fixture.teams.home.winner == true %}winner{% endif %}">{{ fixture.teams.home.name }}
                         <img src="{{ fixture.teams.home.logo }}" alt="{{ fixture.teams.home.name }}" class="img-fluid logo"/></td>
                       <td class="score">{{ fixture.score.fulltime.home ?? "&#8960;" }}

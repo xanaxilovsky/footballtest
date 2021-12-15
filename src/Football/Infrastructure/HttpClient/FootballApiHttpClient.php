@@ -13,6 +13,7 @@ class FootballApiHttpClient implements FootballServiceInterface
     public const URL_FIXTURES = '/fixtures';
     public const URL_TEAMS = '/teams';
     public const URL_HEAD_TO_HEAD = '/fixtures/headtohead';
+    public const URL_STATISTICS = '/fixtures/statistics';
     public const COUNTRY_FRANCE = 'France';
 
     private HttpClientInterface $client;
@@ -51,6 +52,17 @@ class FootballApiHttpClient implements FootballServiceInterface
         $response = $this->client->request(Request::METHOD_GET, self::URL_HEAD_TO_HEAD, [
             'query' => [
                 'h2h' => sprintf('%d-%d', $firstTeamId, $secondTeamId),
+            ],
+        ]);
+
+        return $response->toArray()['response'];
+    }
+
+    public function getStatistics(int $fixtureId): array
+    {
+        $response = $this->client->request(Request::METHOD_GET, self::URL_STATISTICS, [
+            'query' => [
+                'fixture' => $fixtureId,
             ],
         ]);
 

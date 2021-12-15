@@ -60,4 +60,18 @@ class CachedFootballService implements FootballServiceInterface
 
         return $item->get();
     }
+
+    public function getStatistics(int $fixtureId): array
+    {
+        $item = $this->cachePool->getItem(sprintf('statistics_%s', $fixtureId));
+
+        if (!$item->isHit()) {
+            $item->set($this->footballService->getStatistics($fixtureId));
+            $item->expiresAfter(new \DateInterval('P1M'));
+
+            $this->cachePool->save($item);
+        }
+
+        return $item->get();
+    }
 }

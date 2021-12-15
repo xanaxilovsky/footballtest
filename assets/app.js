@@ -20,11 +20,13 @@ summaryStatsModal.addEventListener('shown.bs.modal', function (event) {
   let homeTeamId = button.getAttribute('data-bs-home-team-id')
   let awayTeamId = button.getAttribute('data-bs-away-team-id')
   let date = button.getAttribute('data-bs-date')
+  let fixtureId = button.getAttribute('data-bs-fixture-id')
 
   fetch('/summary-stats?' + new URLSearchParams({
     firstTeamId: homeTeamId,
     secondTeamId: awayTeamId,
     date: date,
+    fixtureId: fixtureId,
   }), {
     method: "GET",
   })
