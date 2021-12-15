@@ -1,0 +1,22 @@
+name: Code check
+on:
+  - push
+
+jobs:
+  cs:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Resolve changed files
+        id: changed_files
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ' '
+
+      - name: PHP-CS-Fixer on changed files
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+          args: --config=.php_cs.dist.php --diff --dry-run --path-mode=intersection -- ${{ steps.changed_files.outputs.files_added }} ${{ steps.changed_files.outputs.files_modified }}

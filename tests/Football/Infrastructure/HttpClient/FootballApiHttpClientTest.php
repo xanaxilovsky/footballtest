@@ -164,7 +164,7 @@ class FootballApiHttpClientTest extends TestCase
             'response_headers' => ['Content-Type: application/json'],
         ]);
 
-        $httpClient = new MockHttpClient($mockResponse, 'https://example.com'. FootballApiHttpClient::URL_FIXTURES);
+        $httpClient = new MockHttpClient($mockResponse, 'https://example.com'.FootballApiHttpClient::URL_FIXTURES);
         $service = new FootballApiHttpClient($httpClient);
         $responseData = $service->getFrenchLeagueMatchesList();
 
