@@ -26,8 +26,7 @@ class FootballApiHttpClient implements FootballServiceInterface
     {
         $response = $this->client->request(Request::METHOD_GET, self::URL_FIXTURES, [
             'query' => [
-                // 'date' => date('Y-m-d'),
-                'date' => '2021-12-13',
+                'date' => date('Y-m-d'),
             ],
         ]);
 
