@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FrenchTeamsControllerTest extends WebTestCase
 {
-    public function test__invoke(): void
+    public function testInvoke(): void
     {
         $client = static::createClient();
         $client->request('GET', '/teams');

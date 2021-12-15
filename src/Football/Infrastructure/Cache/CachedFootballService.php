@@ -19,12 +19,12 @@ class CachedFootballService implements FootballServiceInterface
         $this->cachePool = $cachePool;
     }
 
-    public function getFrenchLeagueMatchesList(): array
+    public function getFrenchLeagueMatchesList(?string $date = null): array
     {
-        $item = $this->cachePool->getItem(sprintf('fixtures_%s', date('Y-m-d')));
+        $item = $this->cachePool->getItem(sprintf('fixtures_%s', $date ?? date('Y-m-d')));
 
         if (!$item->isHit()) {
-            $item->set($this->footballService->getFrenchLeagueMatchesList());
+            $item->set($this->footballService->getFrenchLeagueMatchesList($date));
             $item->expiresAt(new \DateTimeImmutable('today 23:59'));
 
             $this->cachePool->save($item);

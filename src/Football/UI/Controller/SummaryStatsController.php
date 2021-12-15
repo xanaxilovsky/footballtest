@@ -18,6 +18,7 @@ class SummaryStatsController extends AbstractController
     {
         return $this->render('summary_stats.html.twig', [
           'headtohead' => $footballService->getHeadToHead((int) $request->get('firstTeamId'), (int) $request->get('secondTeamId')),
+          'date' => $request->get('date') ?? date('Y-m-d'),
       ]);
     }
 }

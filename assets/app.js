@@ -19,10 +19,12 @@ summaryStatsModal.addEventListener('shown.bs.modal', function (event) {
   let button = event.relatedTarget;
   let homeTeamId = button.getAttribute('data-bs-home-team-id')
   let awayTeamId = button.getAttribute('data-bs-away-team-id')
+  let date = button.getAttribute('data-bs-date')
 
   fetch('/summary-stats?' + new URLSearchParams({
     firstTeamId: homeTeamId,
     secondTeamId: awayTeamId,
+    date: date,
   }), {
     method: "GET",
   })

@@ -22,11 +22,11 @@ class FootballApiHttpClient implements FootballServiceInterface
         $this->client = $client;
     }
 
-    public function getFrenchLeagueMatchesList(): array
+    public function getFrenchLeagueMatchesList(?string $date = null): array
     {
         $response = $this->client->request(Request::METHOD_GET, self::URL_FIXTURES, [
             'query' => [
-                'date' => date('Y-m-d'),
+                'date' => $date ?? date('Y-m-d'),
             ],
         ]);
 

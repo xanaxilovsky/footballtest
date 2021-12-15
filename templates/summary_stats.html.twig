@@ -1,5 +1,5 @@
 {% for fixture in headtohead %}
-  {% if fixture.fixture.date | date == "now" | date or loop.index0 == 0 %}
+  {% if fixture.fixture.date|date("Y-m-d") == date %}
     <table class="table">
       <tbody>
         <tr>
@@ -17,7 +17,11 @@
         </tr>
       </tbody>
     </table>
-  {% else %}
+  {% endif %}
+{% endfor %}
+
+{% for fixture in headtohead %}
+  {% if fixture.fixture.date|date("Y-m-d") != date %}
     <div class="card-header text-center">{{ fixture.fixture.date|date("D F d, Y") }}</div>
     <div class="card-body table-responsive">
       <table class="table">

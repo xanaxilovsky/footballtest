@@ -6,7 +6,7 @@ namespace App\Football\Domain;
 
 interface FootballServiceInterface
 {
-    public function getFrenchLeagueMatchesList(): array;
+    public function getFrenchLeagueMatchesList(?string $date = null): array;
 
     public function getFrenchTeamsList(): array;
 

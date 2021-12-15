@@ -35,7 +35,9 @@ docker-compose exec football-test-php composer install
 
 ## Website URL
 
-http://localhost:8081
+- http://localhost:8081/
+- http://localhost:8081?date=2021-12-13
+- http://localhost:8081?date=2021-12-10
 
 ## Tests check
 
