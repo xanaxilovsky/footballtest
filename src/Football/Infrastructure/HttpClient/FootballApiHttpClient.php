@@ -10,10 +10,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class FootballApiHttpClient implements FootballServiceInterface
 {
-    private const URL_FIXTURES = '/fixtures';
-    private const URL_TEAMS = '/teams';
-    private const URL_HEAD_TO_HEAD = '/fixtures/headtohead';
-    private const COUNTRY_FRANCE = 'France';
+    public const URL_FIXTURES = '/fixtures';
+    public const URL_TEAMS = '/teams';
+    public const URL_HEAD_TO_HEAD = '/fixtures/headtohead';
+    public const COUNTRY_FRANCE = 'France';
 
     private HttpClientInterface $client;
 
