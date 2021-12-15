@@ -1,7 +1,40 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-
-Toto
-
-{% endblock %}
+{% for fixture in headtohead %}
+  {% if fixture.fixture.date | date == "now" | date or loop.index0 == 0 %}
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="summary-home text-center">
+            <img src="{{ fixture.teams.home.logo }}" alt="{{ fixture.teams.home.name }}" class="img-fluid"/><br/>
+            {{ fixture.teams.home.name }}
+          </td>
+          <td class="summary-score text-center align-middle">{{ fixture.score.fulltime.home ?? "&#8960;" }}
+            -
+            {{ fixture.score.fulltime.away ?? "&#8960;" }}</td>
+          <td class="summary-away text-center">
+            <img src="{{ fixture.teams.away.logo }}" alt="{{ fixture.teams.away.name }}" class="img-fluid"/><br/>
+            {{ fixture.teams.away.name }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <div class="card-header text-center">{{ fixture.fixture.date|date("D F d, Y") }}</div>
+    <div class="card-body table-responsive">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="home {% if fixture.teams.home.winner == true %}winner{% endif %}">{{ fixture.teams.home.name }}
+              <img src="{{ fixture.teams.home.logo }}" alt="{{ fixture.teams.home.name }}" class="img-fluid logo"/></td>
+            <td class="score">{{ fixture.score.fulltime.home ?? "&#8960;" }}
+              -
+              {{ fixture.score.fulltime.away ?? "&#8960;" }}</td>
+            <td class="away {% if fixture.teams.away.winner == true %}winner{% endif %}"><img src="{{ fixture.teams.away.logo }}" alt="{{ fixture.teams.away.name }}" class="img-fluid logo"/>
+              {{ fixture.teams.away.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+{% else %}
+  <p class="text-info">No data for these teams!</p>
+{% endfor %}

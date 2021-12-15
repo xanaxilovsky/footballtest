@@ -49,7 +49,7 @@ class CachedFootballService implements FootballServiceInterface
 
     public function getHeadToHead(int $firstTeamId, int $secondTeamId): array
     {
-        $item = $this->cachePool->getItem(sprintf('headtohead_%s', date('Y-m-d')));
+        $item = $this->cachePool->getItem(sprintf('headtohead_%d_%d_%s', $firstTeamId, $secondTeamId, date('Y-m-d')));
 
         if (!$item->isHit()) {
             $item->set($this->footballService->getHeadToHead($firstTeamId, $secondTeamId));

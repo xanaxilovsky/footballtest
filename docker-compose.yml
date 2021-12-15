@@ -1,1 +1,26 @@
-version: '3'
+version: "3.5"
+
+services:
+    football-test-php:
+        build: .
+        command: ["php-fpm"]
+        volumes:
+        - .:/var/www/api
+
+    football-test-nginx:
+        depends_on:
+            - football-test-php
+        image: nginx:1.16-alpine
+        networks:
+            default:
+                aliases:
+                    - football-test
+        ports:
+            - 8081:80
+        volumes:
+            - './public:/var/www/api/public:ro'
+            - './.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf'
+
+networks:
+  default:
+    name: football-network

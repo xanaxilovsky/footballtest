@@ -12,7 +12,7 @@ class FootballApiHttpClient implements FootballServiceInterface
 {
     private const URL_FIXTURES = '/fixtures';
     private const URL_TEAMS = '/teams';
-    private const URL_HEAD_TO_HEAD = '/headtohead';
+    private const URL_HEAD_TO_HEAD = '/fixtures/headtohead';
     private const COUNTRY_FRANCE = 'France';
 
     private HttpClientInterface $client;
@@ -26,7 +26,8 @@ class FootballApiHttpClient implements FootballServiceInterface
     {
         $response = $this->client->request(Request::METHOD_GET, self::URL_FIXTURES, [
             'query' => [
-                'date' => date('Y-m-d'),
+                // 'date' => date('Y-m-d'),
+                'date' => '2021-12-13',
             ],
         ]);
 

@@ -1,0 +1,49 @@
+@import "~bootstrap/scss/bootstrap";
+
+.holder {
+    background: #567d46;
+    min-height: 100vh;
+}
+
+.rounded {
+    border-radius: 1rem !important;
+}
+
+.title {
+    color: #f8f8f8;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    height: 20px;
+}
+
+td.home {
+    text-align: right;
+    width: 40%;
+}
+
+td.score {
+    text-align: center;
+    width: 20%;
+}
+
+td.away {
+    text-align: left;
+    width: 40%;
+}
+
+td.winner {
+    font-weight: bold;
+}
+
+tr.clickable-row{
+    cursor:pointer;
+}
+
+td.summary-score {
+    font-size: 30px;
+}

@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SummaryStatsController extends AbstractController
 {
-  /**
-   * @Route("/summary-stats")
-   */
+    /**
+     * @Route("/summary-stats")
+     */
     public function __invoke(Request $request, FootballServiceInterface $footballService)
     {
         return $this->render('summary_stats.html.twig', [
