@@ -173,6 +173,46 @@ class FootballApiHttpClientTest extends TestCase
         self::assertSame(FootballApiHttpClient::COUNTRY_FRANCE, reset($responseData)['league']['country']);
     }
 
+    public function testGetFrenchTeamsList(): void
+    {
+        $mockResponseJson = json_encode([
+            'response' => [
+                [],
+            ],
+        ]);
+
+        $mockResponse = new MockResponse($mockResponseJson, [
+            'http_code' => 200,
+            'response_headers' => ['Content-Type: application/json'],
+        ]);
+
+        $httpClient = new MockHttpClient($mockResponse, 'https://example.com'.FootballApiHttpClient::URL_TEAMS);
+        $service = new FootballApiHttpClient($httpClient);
+        $responseData = $service->getFrenchTeamsList();
+
+        self::assertSame('GET', $mockResponse->getRequestMethod());
+    }
+
+    public function testGetHeadToHead(): void
+    {
+        $mockResponseJson = json_encode([
+            'response' => [
+                [],
+            ],
+        ]);
+
+        $mockResponse = new MockResponse($mockResponseJson, [
+            'http_code' => 200,
+            'response_headers' => ['Content-Type: application/json'],
+        ]);
+
+        $httpClient = new MockHttpClient($mockResponse, 'https://example.com'.FootballApiHttpClient::URL_TEAMS);
+        $service = new FootballApiHttpClient($httpClient);
+        $responseData = $service->getHeadToHead(1, 2);
+
+        self::assertSame('GET', $mockResponse->getRequestMethod());
+    }
+
     private function randomWord(int $length = 5): string
     {
         return substr(str_shuffle('qwertyuiopasdfghjklzxcvbnm'), 0, $length);

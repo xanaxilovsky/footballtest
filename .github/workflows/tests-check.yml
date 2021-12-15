@@ -1,0 +1,35 @@
+name: Tests check
+on:
+  - push
+
+jobs:
+  unit_tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Install and get version
+        run: bin/phpunit --version
+
+      - name: Run Unit tests
+        run: bin/phpunit
+
+      # - name: Run Integration tests
+      #   if: ${{ always() }}
+      #   run: bin/phpunit --testsuite integration
+
+      # - name: Run Functional tests
+      #   if: ${{ always() }}
+      #   run: bin/phpunit --testsuite functional
