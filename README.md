@@ -30,7 +30,7 @@ docker-compose up -d --build
 **4.** Install project dependencies
 
 ```bash
-docker-compose exec football-test-php composer install
+docker-compose exec footballtest_php composer install
 ```
 
 ## Website URL

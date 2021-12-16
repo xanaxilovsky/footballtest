@@ -1,20 +1,20 @@
 version: "3.5"
 
 services:
-    football-test-php:
+    footballtest_php:
         build: .
         command: ["php-fpm"]
         volumes:
         - .:/var/www/api
 
-    football-test-nginx:
+    footballtest_nginx:
         depends_on:
-            - football-test-php
+            - footballtest_php
         image: nginx:1.16-alpine
         networks:
             default:
                 aliases:
-                    - football-test
+                    - footballtest
         ports:
             - 8081:80
         volumes:
